@@ -1,13 +1,17 @@
-#Cross compile Chaincoin
+Cross compile Chaincoin
+=======================
 
 Host: Ubuntu
 
 Target: Windows 7/8/10
 64 Bit
 
-##Toolchain mxe
+Toolchain mxe
+=============
 
-###Install
+
+Install
+-------
 
 Clone the crosscompiler mxe toolchain
 
@@ -17,7 +21,8 @@ git clone https://github.com/mxe/mxe.git
 
 ```
 
-###Settings
+Settings
+--------
 
 To compile for 64 bit edit ./settings.mk. Add the following entry.  
 
@@ -39,7 +44,8 @@ $(PKG)_VERSION  := 4.8.30
 $(PKG)_CHECKSUM := e0491a07cdb21fb9aa82773bbbedaeb7639cbd0e7f96147ab46141e0045db72a
 ```
 
-###Compile libraries
+Compile libraries
+-----------------
 
 The following libraries are needed to compile chaincoin:
 
@@ -49,7 +55,8 @@ cd mxe
 make openssl libevent boost miniupnpc qt db4.8
 ```
 
-###Enviornment
+Enviornment
+-----------
 
 ```bash
 export PATH=$HOME/mxe/usr/bin:$PATH
@@ -60,7 +67,8 @@ unset `env | \
     cut -d '=' -f1 | tr '\n' ' '`
 ```
 
-##Compile
+Compile CHAINCOIN
+=================
 
 ```bash
 git clone https://github.com/chaincoin/chaincoin.git
