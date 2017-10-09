@@ -3,17 +3,17 @@ Cross compile Chaincoin
 
 Host: Ubuntu
 
-Target: Windows 7/8/10
-64 Bit
+Target: Windows 7/8/10 64 Bit
 
-Toolchain mxe
-=============
+Toolchain
+---------
+
+Setting up the »mxe« toolchain:
+
+**Install:**
 
 
-Install
--------
-
-Clone the crosscompiler mxe toolchain
+Clone the mxe toolchain
 
 
 ```bash
@@ -21,13 +21,11 @@ git clone https://github.com/mxe/mxe.git
 
 ```
 
-Settings
---------
+**Settings**
 
-To compile for 64 bit edit ./settings.mk. Add the following entry.  
+Edit ~/mxe/settings.mk. Add the following entry for 64bit.  
 
 ```bash
-
 MXE_TARGETS := x86_64-w64-mingw32.static
 
 ```
@@ -36,27 +34,29 @@ change Berkeley DB to version 4.8
 
 
 ```bash
-cd src
+cd ~/mxe/src
 cp db.mk db4.8.mk
-vim db4.8.mk
+```
+
+edit the file ~/mxe/src/db4.8.mk  and change the following entries:
+
+```bash
 PKG             := db4.8
 $(PKG)_VERSION  := 4.8.30
 $(PKG)_CHECKSUM := e0491a07cdb21fb9aa82773bbbedaeb7639cbd0e7f96147ab46141e0045db72a
 ```
 
-Compile libraries
------------------
+**Compile libraries**
 
-The following libraries are needed to compile chaincoin:
+Libraries needed to compile chaincoin:
 
 
 ```bash
-cd mxe
+cd ~/mxe
 make openssl libevent boost miniupnpc qt db4.8
 ```
 
-Enviornment
------------
+**Environment**
 
 ```bash
 export PATH=$HOME/mxe/usr/bin:$PATH
@@ -68,7 +68,7 @@ unset `env | \
 ```
 
 Compile CHAINCOIN
-=================
+-----------------
 
 ```bash
 git clone https://github.com/chaincoin/chaincoin.git
@@ -78,4 +78,3 @@ cd chaincoin
 
 make HOST=x86_64-w64-mingw32 -j4
 ```
-
